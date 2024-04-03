@@ -513,4 +513,72 @@
       </tbody>
     </table>
   </body>
+  <script>
+    async function fetchData() {
+      try {
+        //Fetch localized content:
+        const contentResponse = await fetch("../content/German_content.json");
+        const contentData = await contentResponse.json();
+
+        // Map data keys to corresponding HTML element IDs
+        Object.keys(contentData).forEach((value) => {
+          const element = document.getElementById(value);
+          if (element) {
+            element.textContent = contentData[value];
+          }
+        });
+
+        //Error handling
+      } catch (error) {
+        console.error("Error fetching German variables: ", error);
+      }
+    }
+
+    async function fetchCities() {
+      //Fetch Tour dates:
+      const tourdateResponse = await fetch("../content/tour_dates.json");
+      const tourdateData = await tourdateResponse.json();
+      const validCountries = ["Germany"];
+      const validCities = validCountries.flatMap((country) =>
+        tourdateData
+          .filter((value) => value["country"] === country)
+          .flatMap((entry) =>
+            entry.cities.map((city) => ({ city: city.name, date: city.date }))
+          )
+      );
+
+      const tourDatesContainer = document.getElementById("tourDatesContainer");
+
+      validCities.forEach((element) => {
+        const cityName = element["city"];
+        let dates = "";
+
+        if (Array.isArray(element.date)) {
+          element.date.forEach((value, index) => {
+            if (index == 0) {
+              dates = value;
+            } else if (index === element.date.length - 1) {
+              dates += `, ${value}.`;
+            } else {
+              dates += `, ${value}`;
+            }
+          });
+        } else {
+          dates += `${element.date}.`;
+        }
+
+        //Adding it to HTML:
+        const liElement = document.createElement("li");
+        liElement.textContent = `${cityName}: ${dates}`;
+        tourDatesContainer.appendChild(liElement);
+      });
+    }
+
+    async function populateData() {
+      await fetchData();
+      fetchCities();
+    }
+
+    populateData();
+  </script>
 </html>
