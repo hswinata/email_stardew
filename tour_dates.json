@@ -1,0 +1,95 @@
+[
+  {
+    "country": "USA",
+    "cities": [
+      { "name": "Los Angeles", "date": ["20240216", "20240217"] },
+      { "name": "Boston", "date": ["20240317", "20240223"] },
+      { "name": "Philadelphia", "date": ["20240224", "20240601"] },
+      { "name": "New York", "date": ["20240227", "20240229"] },
+      { "name": "Seattle", "date": ["20240302", "20240303"] },
+      { "name": "Chicago", "date": "20240309" },
+      { "name": "St.Louis", "date": "20240310" },
+      { "name": "Cincinnati", "date": "20240505" },
+      { "name": "Portland", "date": "20240518" },
+      { "name": "Tampa", "date": "20240529" },
+      { "name": "Kansas City", "date": "20240607" },
+      { "name": "San Fransisco", "date": "20240609" },
+      { "name": "Austin", "date": "20240615" },
+      { "name": "Atlanta", "date": "20240714" }
+    ]
+  },
+
+  {
+    "country": "Canada",
+    "cities": [
+      { "name": "Toronto", "date": ["20240314", "20240314"] },
+      { "name": "Montreal", "date": ["20240317", "20240505"] },
+      { "name": "Ottawa", "date": "20240323" },
+      { "name": "Vancouver", "date": "20240327" },
+      { "name": "Edmonton", "date": "20240328" }
+    ]
+  },
+
+  {
+    "country": "UK",
+    "cities": [
+      { "name": "Birmingham", "date": "20240428" },
+      { "name": "London", "date": ["20240429", "20240513"] },
+      { "name": "Manchester", "date": "20240714" },
+      { "name": "Edinburgh", "date": "20240505" }
+    ]
+  },
+
+  {
+    "country": "Germany",
+    "cities": [{ "name": "Berlin", "date": "20240501" }]
+  },
+
+  {
+    "country": "France",
+    "cities": [{ "name": "Paris", "date": "20240503" }]
+  },
+
+  {
+    "country": "Italy",
+    "cities": [{ "name": "Milan", "date": "20240509" }]
+  },
+
+  {
+    "country": "Australia",
+    "cities": [
+      { "name": "Melbourne", "date": ["20240405", "20240409"] },
+      { "name": "Perth", "date": "20240407" },
+      { "name": "Brisbane", "date": "20240414" },
+      { "name": "Sydney", "date": ["20240420", "20240427"] }
+    ]
+  },
+
+  {
+    "country": "New Zealand",
+    "cities": [
+      { "name": "Wellington", "date": "20240413" },
+      { "name": "Auckland", "date": "20240414" }
+    ]
+  },
+
+  {
+    "country": "Thailand",
+    "cities": [{ "name": "Bangkok", "date": "20240322" }]
+  },
+
+  {
+    "country": "South Korea",
+    "cities": [{ "name": "Seoul", "date": "20240324" }]
+  },
+
+  {
+    "country": "Singapore",
+    "cities": [{ "name": "Singapore", "date": "20240826" }]
+  },
+
+  {
+    "country": "Japan",
+    "cities": [{ "name": "Tokyo", "date": "20240927" }]
+  }
+]
