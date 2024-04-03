@@ -69,89 +69,6 @@
   <body
     style="background-color: #f6f6f7; font-family: Helvetica, Arial, sans-serif"
   >
-    <!--Variable Assignment English:
-    {% assign preheader_en = "Welcome to the Festival of Seasons!" %} {% assign
-    welcome_en = "Welcome to " %} {% assign text1_en = "Immerse yourself in the
-    melodies of nature, as a chamber orchestra brings to life the music of
-    Stardew Valley! Stardew Valley: Festival of Seasons is an intimate,
-    immersive live concert featuring fresh arrangements of the most cherished
-    songs from the game's mesmerizing soundtrack." %} {% assign text2_en =
-    "Curated by ConcernedApe, the concert program will take you on a musical
-    journey through the four seasons of the valley, its unforgettable festivals,
-    and its beloved villagers. Join us at Festival of Seasons and experience the
-    magic of Stardew Valley like never before!" %} {% assign text3_en = "Here
-    are the list of cities we will be in: %} {% assign button_en = "Join In" %}
-
-    {% assign checkout_en = "Check out our page!" %}
-    {% assign needAHand_en = "Need a hand?" %}
-
-    {% assign stardewContact_en = "Stardew Valley: Festival of Seasons is produced by ConcernedApe and SOHO Live. For booking, press, and general inquiries, contact info@soho-live.com." %}
-
-    -->
-
-    <!--Variable Assignment German: 
-    {% assign preheader_de = "Willkommen zu Festival of Seasons!" %} {% assign
-    welcome_de = "Willkommen zu " %} {% assign text1_de = "Tauchen Sie ein in
-    die Melodien der Natur, wenn ein Kammerorchester die Musik von Stardew
-    Valley zum Leben erweckt! Stardew Valley: Festival of Seasons ist ein
-    intimes, mitreißendes Live-Konzert mit neuen Arrangements der beliebtesten
-    Songs aus dem fesselnden Soundtrack des Spiels." %} {% assign text2_de =
-    "Das von ConcernedApe kuratierte Konzertprogramm wird euch auf eine
-    musikalische Reise durch die vier Jahreszeiten des Tals, seine
-    unvergesslichen Feste und seine geliebten Dorfbewohner mitnehmen. Kommt zum
-    Festival der Jahreszeiten und erlebt die Magie von Stardew Valley wie nie
-    zuvor!" %} {% assign text3_de = "Hier ist die Liste der Städte, in denen wir
-    sein werden: " %} {% assign button_de = "Mach mit" %}
-
-    {% assign checkout_de = "Check out our page!" %}
-    {% assign needAHand_de = "Brauchen Sie Hilfe?" %}
-
-      {% assign stardewContact_de = "Stardew Valley: Festival of Seasons wird von ConcernedApe und SOHO Live produziert. Für Buchungen, Presse und allgemeine Anfragen wenden Sie sich bitte an info@soho-live.com." %}
-
-    -->
-
-    <!--Variable Assignment French: 
-    {% assign preheader_fr = "Bienvenue au Festival of Seasons!" %} {% assign
-    welcome_fr = "Bienvenue au " %} {% assign text1_fr = "Plongez dans les
-    mélodies de la nature, alors qu'un orchestre de chambre donne vie à la
-    musique de Stardew Valley ! Stardew Valley : Festival of Seasons est un
-    concert en direct, intime et immersif, qui présente de nouveaux arrangements
-    des chansons les plus appréciées de l'envoûtante bande-son du jeu." %} {%
-    assign text2_fr = "Organisé par ConcernedApe, le programme du concert vous
-    emmènera dans un voyage musical à travers les quatre saisons de la vallée,
-    ses festivals inoubliables et ses villageois bien-aimés. Rejoignez-nous au
-    Festival des Saisons et vivez la magie de Stardew Valley comme jamais
-    auparavant !" %} {% assign text3_fr = "Voici la liste des villes où nous
-    nous rendrons: " %} {% assign button_fr = "Participez"}
-
-    {% assign checkout_fr = "Consultez notre page!"}
-    {% assign needAHand_fr = "Besoin d'un coup de main ?"}
-
-      {% assign stardewContact_fr = "Stardew Valley : Festival of Seasons est produit par ConcernedApe et SOHO Live. Pour les réservations, la presse et les demandes générales, contactez info@soho-live.com." %}
-
-    -->
-
-    <!--Variable Assignment Japanese: 
-    {% assign preheader_jp = "季節の祭典」Festival of Seasons!" %} {% assign
-    welcome_jp = "季節の祭典 " %} {% assign text1_jp =
-    "室内オーケストラがStardew
-    Valleyの音楽に命を吹き込み、自然のメロディーに浸ろう！Stardew Valley：
-    Stardew Valley: Festival of
-    Seasons」は、ゲームの魅惑的なサウンドトラックの中でも特に人気の高い楽曲を新鮮なアレンジでお届けする、アットホームで臨場感あふれるライブコンサートです。"
-    %} {% assign text2_jp =
-    "ConcernedApeのキュレーションによるコンサートプログラムでは、谷の四季、忘れられないお祭り、そして愛すべき村人たちを通して音楽の旅にご案内します。フェスティバル・オブ・シーズンズに参加して、今までにないスターデューバレーの魅力を体験しましょう！"
-    %} {% assign text3_jp = "以下が滞在予定都市のリストだ：" %} {% assign
-    button_jp = "参加する！"}
-
-    {% assign checkout_jp = "私たちのページをご覧ください" %}
-
-    {% assign needAHand_jp = "手を貸そうか？" %}
-
-  {% assign stardewContact_jp = "スターデューバレー フェスティバル・オブ・シーズンズは、ConcernedApeとSOHO Liveによって制作されています。予約、プレス、一般的なお問い合わせは、info@soho-live.com。" %}
-
-
-    -->
-
     <!--Preheader-->
     <span
       class="preheader"
@@ -168,11 +85,6 @@
         width: 0;
       "
     >
-      {% if language == 'en' %} {{ preheader_en }} {% elsif language == 'de' %}
-      {{ preheader_de }} {% elsif language == 'fr' %} {{ preheader_fr }} {%
-      elsif language == 'jp' %} {{ preheader_jp }} {% else %} {{ preheader_en }}
-      <!-- Default to English if language not specified -->
-      {% endif %} Welcome to the Festival of Seasons!
     </span>
 
     <table
@@ -276,15 +188,8 @@
                     "
                     width="100%"
                   >
-                    <!-- {% if language == 'en' %} {{ welcome_en }} {% elsif language
-                    == 'de' %} {{ welcome_de }} {% elsif language == 'fr' %} {{
-                    welcome_fr }} {% elsif language == 'jp' %} {{ welcome_jp }}
-                    {% else %} {{ welcome_en }}
-                    { % endif %} -->
                     Welcome to the
                     <span style="color: #0da04c">Festival of Seasons</span>
-                    <!-- {% if {$first_name} != null %} , {{$first_name}}! {% else} !
-                    {% endif} -->
                     !
                   </td>
                   <td style="min-width: 10px"></td>
@@ -324,12 +229,6 @@
                                       font-size: 18px;
                                     "
                                   >
-                                    <!-- {% if language == 'en' %} {{ text1_en }} {%
-                                    elsif language == 'de' %} {{ text1_de }} {%
-                                    elsif language == 'fr' %} {{ text1_fr }} {%
-                                    elsif language == 'jp' %} {{ text1_jp }} {%
-                                    else %} {{ text1_en }}
-                                    { % endif %} -->
                                     Immerse yourself in the melodies of nature,
                                     as a chamber orchestra brings to life the
                                     music of Stardew Valley! Stardew Valley:
@@ -346,12 +245,6 @@
                                       font-size: 18px;
                                     "
                                   >
-                                    <!-- {% if language == 'en' %} {{ text2_en }} {%
-                                    elsif language == 'de' %} {{ text2_de }} {%
-                                    elsif language == 'fr' %} {{ text1_fr }} {%
-                                    elsif language == 'jp' %} {{ text2_jp }} {%
-                                    else %} {{ text2_en }}
-                                    { % endif %} -->
                                     Curated by ConcernedApe, the concert program
                                     will take you on a musical journey through
                                     the four seasons of the valley, its
@@ -368,32 +261,7 @@
                                       font-size: 18px;
                                     "
                                   >
-                                    <!-- {% if language == 'en' %} {{ text3_en }} {%
-                                    elsif language == 'de' %} {{ text3_de }} {%
-                                    elsif language == 'fr' %} {{ text3_fr }} {%
-                                    elsif language == 'jp' %} {{ text3_jp }} {%
-                                    else %} {{ text3_en }} { % endif %}  -->
                                     We are going to these cities near you:
-
-                                    <!-- {% for country in {{custom_attribute.$countries}} %}
-                                      {% if {{country}} == 'usa' %} 
-                                        {% assign usa_receiver = true %} 
-                                      {% elsif {{country}} == 'de' %} 
-                                        {% assign de_receiver = true %}
-                                      {% elsif {{country}} == 'fr' %} 
-                                        {% assign fr_receiver = true %}
-                                      {% elsif {{country}} == 'jp' %} 
-                                        {% assign jp_receiver = true %}
-                                  
-                                      {%endif}
-                                    {%endfor%} 
-                                    
-                                  {% for city in {{custom_attribute.${cities}}} %}
-                                  % if usa_receiver == true or de_receiver == true or fr_receiver == true or jp_receiver == true %}
-                                  🌟 {{ city.name }}
-                                  {% endif %}
-                                    {% endfor %}
-                                    -->
                                   </p>
                                 </td>
 
@@ -443,12 +311,6 @@
                                       color: white;
                                     "
                                   >
-                                    <!-- {% if language == 'en' %} {{ button_en }} {%
-                                    elsif language == 'de' %} {{ button_de }} {%
-                                    elsif language == 'fr' %} {{ button_fr }} {%
-                                    elsif language == 'jp' %} {{ button_jp }} {%
-                                    else %} {{ button_en }}
-                                    { % endif %} -->
                                     Learn More
                                   </a>
                                 </td>
@@ -476,12 +338,6 @@
                                 text-decoration-color: #7ec77b;
                               "
                             >
-                              <!-- {% if language == 'en' %} {{ checkout_en }} {%
-                              elsif language == 'de' %} {{ checkout_de }} {%
-                              elsif language == 'fr' %} {{ checkout_fr }} {%
-                              elsif language == 'jp' %} {{ checkout_jp }} {%
-                              else %} {{ checkout_en }}
-                            {% endif %} -->
                               Or Check out our page!
                             </a>
                           </td>
@@ -619,11 +475,6 @@
                                 text-align: center;
                               "
                             >
-                              <!-- {% if language == 'en' %} {{ needAHand_en }} {% elsif
-                              language == 'de' %} {{ needAHand_de }} {% elsif
-                              language == 'fr' %} {{ needAHand_fr }} {% elsif
-                              language == 'jp' %} {{ needAHand_jp }} {% else %} {{
-                              text3_en }} -->
                               Need a hand?
                             </p>
                             <p
@@ -635,11 +486,6 @@
                                 color: #999999;
                               "
                             >
-                              <!-- {% if language == 'en' %} {{ needAHand_en }} {% elsif
-                              language == 'de' %} {{ needAHand_de }} {% elsif
-                              language == 'fr' %} {{ needAHand_fr }} {% elsif
-                              language == 'jp' %} {{ needAHand_jp }} {% else %} {{
-                              text3_en }} -->
                               Stardew Valley: Festival of Seasons is produced by
                               ConcernedApe and SOHO Live. For booking, press,
                               and general inquiries, contact info@soho-live.com.
