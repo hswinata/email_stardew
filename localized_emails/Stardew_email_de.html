@@ -246,7 +246,6 @@
                                     "
                                   ></p>
                                 </td>
-
                                 <td style="width: auto"></td>
                               </tr>
 
@@ -263,11 +262,12 @@
                                         class="tourDatesContainer"
                                         style="
                                           font-size: 18px;
-                                          line-height: 2;
+                                          line-height: 1;
                                           color: #0da04c;
                                           font-weight: bold;
                                           text-align: center;
                                           list-style: none;
+                                          padding: 0;
                                         "
                                       ></ul>
                                     </tr>
@@ -530,6 +530,16 @@
       }
     }
 
+    function formatDateGerman(dateString) {
+      const date = new Date(
+        dateString.slice(0, 4),
+        parseInt(dateString.slice(4, 6)) - 1,
+        dateString.slice(6)
+      );
+      const options = { day: "2-digit", month: "long", year: "numeric" };
+      return date.toLocaleDateString("de-DE", options);
+    }
+
     async function fetchCities() {
       //Fetch Tour dates:
       const tourdateResponse = await fetch("../content/tour_dates.json");
@@ -539,7 +549,10 @@
         tourdateData
           .filter((value) => value["country"] === country)
           .flatMap((entry) =>
-            entry.cities.map((city) => ({ city: city.name, date: city.date }))
+            entry.cities.map((city) => ({
+              city: city.name,
+              date: formatDateGerman(city.date),
+            }))
           )
       );
 
@@ -554,18 +567,18 @@
             if (index == 0) {
               dates = value;
             } else if (index === element.date.length - 1) {
-              dates += `, ${value}.`;
+              dates += `, ${value}`;
             } else {
               dates += `, ${value}`;
             }
           });
         } else {
-          dates += `${element.date}.`;
+          dates += `${element.date}`;
         }
 
         //Adding it to HTML:
         const liElement = document.createElement("li");
-        liElement.textContent = `${cityName}: ${dates}`;
+        liElement.textContent = `🌟 ${cityName}: ${dates} 🌟`;
         tourDatesContainer.appendChild(liElement);
       });
     }
