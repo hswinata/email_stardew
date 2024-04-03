@@ -72,7 +72,6 @@
     <!--Preheader-->
     <span
       class="preheader"
-      id="preheader"
       style="
         color: transparent;
         display: none;
@@ -189,7 +188,7 @@
                     "
                     width="100%"
                   >
-                    <span id="welcome"></span>
+                    <span class="welcome"></span>
                     <span style="color: #0da04c">Festival of Seasons</span>
                     !
                   </td>
@@ -223,8 +222,7 @@
                               <tr>
                                 <td>
                                   <p
-                                    class="text-body"
-                                    id="text1"
+                                    class="text-body text1"
                                     style="
                                       text-align: center;
                                       line-height: 1.5;
@@ -232,8 +230,7 @@
                                     "
                                   ></p>
                                   <p
-                                    class="text-body"
-                                    id="text2"
+                                    class="text-body text2"
                                     style="
                                       text-align: center;
                                       line-height: 1.5;
@@ -241,8 +238,7 @@
                                     "
                                   ></p>
                                   <p
-                                    class="text-body"
-                                    id="text3"
+                                    class="text-body text3"
                                     style="
                                       text-align: center;
                                       line-height: 1.5;
@@ -264,7 +260,7 @@
                                   >
                                     <tr>
                                       <ul
-                                        id="tourDatesContainer"
+                                        class="tourDatesContainer"
                                         style="
                                           font-size: 18px;
                                           line-height: 2;
@@ -315,7 +311,7 @@
                                   "
                                 >
                                   <a
-                                    id="button"
+                                    class="button"
                                     href="www.stardewvalleyconcert.com"
                                     style="
                                       text-decoration: none;
@@ -343,7 +339,7 @@
                             style="text-align: center; font-size: 18px"
                           >
                             <a
-                              id="checkout"
+                              class="checkout"
                               href="www.stardewvalleyconcert.com"
                               style="
                                 color: #0da04c;
@@ -439,7 +435,7 @@
                               <tr>
                                 <td>
                                   <p
-                                    id="needAHand"
+                                    class="needAHand"
                                     style="
                                       color: #e496f4;
                                       font-size: 22px;
@@ -448,7 +444,7 @@
                                     "
                                   ></p>
                                   <p
-                                    id="stardewContact"
+                                    class="stardewContact"
                                     style="
                                       font-size: 16px;
                                       line-height: 1.2;
@@ -475,7 +471,7 @@
                         >
                           <td>
                             <p
-                              id="needAHand"
+                              class="needAHand1"
                               style="
                                 color: #e496f4;
                                 font-size: 20px;
@@ -484,7 +480,7 @@
                               "
                             ></p>
                             <p
-                              id="stardewContact"
+                              class="stardewContact1"
                               style="
                                 font-size: 14px;
                                 line-height: 1.2;
@@ -522,7 +518,8 @@
 
         // Map data keys to corresponding HTML element IDs
         Object.keys(contentData).forEach((value) => {
-          const element = document.getElementById(value);
+          const element = document.querySelector(`.${value}`);
+          console.log(element);
           if (element) {
             element.textContent = contentData[value];
           }
@@ -533,7 +530,6 @@
         console.error("Error fetching German variables: ", error);
       }
     }
-
     async function fetchCities() {
       //Fetch Tour dates:
       const tourdateResponse = await fetch("../content/tour_dates.json");
@@ -547,7 +543,7 @@
           )
       );
 
-      const tourDatesContainer = document.getElementById("tourDatesContainer");
+      const tourDatesContainer = document.querySelector(".tourDatesContainer");
 
       validCities.forEach((element) => {
         const cityName = element["city"];
