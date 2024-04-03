@@ -471,7 +471,7 @@
                         >
                           <td>
                             <p
-                              class="needAHand1"
+                              class="needAHand"
                               style="
                                 color: #e496f4;
                                 font-size: 20px;
@@ -480,7 +480,7 @@
                               "
                             ></p>
                             <p
-                              class="stardewContact1"
+                              class="stardewContact"
                               style="
                                 font-size: 14px;
                                 line-height: 1.2;
@@ -516,13 +516,12 @@
         const contentResponse = await fetch("../content/German_content.json");
         const contentData = await contentResponse.json();
 
-        // Map data keys to corresponding HTML element IDs
+        // Map data keys to corresponding HTML element classes
         Object.keys(contentData).forEach((value) => {
-          const element = document.querySelector(`.${value}`);
-          console.log(element);
-          if (element) {
+          const elements = document.querySelectorAll(`.${value}`);
+          elements.forEach((element) => {
             element.textContent = contentData[value];
-          }
+          });
         });
 
         //Error handling
@@ -530,6 +529,7 @@
         console.error("Error fetching German variables: ", error);
       }
     }
+
     async function fetchCities() {
       //Fetch Tour dates:
       const tourdateResponse = await fetch("../content/tour_dates.json");
