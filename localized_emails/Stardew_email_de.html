@@ -72,6 +72,7 @@
     <!--Preheader-->
     <span
       class="preheader"
+      id="preheader"
       style="
         color: transparent;
         display: none;
@@ -188,7 +189,7 @@
                     "
                     width="100%"
                   >
-                    Welcome to the
+                    <span id="welcome"></span>
                     <span style="color: #0da04c">Festival of Seasons</span>
                     !
                   </td>
@@ -223,49 +224,59 @@
                                 <td>
                                   <p
                                     class="text-body"
+                                    id="text1"
                                     style="
                                       text-align: center;
                                       line-height: 1.5;
                                       font-size: 18px;
                                     "
-                                  >
-                                    Immerse yourself in the melodies of nature,
-                                    as a chamber orchestra brings to life the
-                                    music of Stardew Valley! Stardew Valley:
-                                    Festival of Seasons is an intimate,
-                                    immersive live concert featuring fresh
-                                    arrangements of the most cherished songs
-                                    from the game's mesmerizing soundtrack.
-                                  </p>
+                                  ></p>
                                   <p
                                     class="text-body"
+                                    id="text2"
                                     style="
                                       text-align: center;
                                       line-height: 1.5;
                                       font-size: 18px;
                                     "
-                                  >
-                                    Curated by ConcernedApe, the concert program
-                                    will take you on a musical journey through
-                                    the four seasons of the valley, its
-                                    unforgettable festivals, and its beloved
-                                    villagers. Join us at Festival of Seasons
-                                    and experience the magic of Stardew Valley
-                                    like never before!
-                                  </p>
+                                  ></p>
                                   <p
                                     class="text-body"
+                                    id="text3"
                                     style="
                                       text-align: center;
                                       line-height: 1.5;
                                       font-size: 18px;
                                     "
-                                  >
-                                    We are going to these cities near you:
-                                  </p>
+                                  ></p>
                                 </td>
 
                                 <td style="width: auto"></td>
+                              </tr>
+
+                              <!--Tour dates row:-->
+                              <tr>
+                                <td>
+                                  <table
+                                    cellpadding="0"
+                                    cellspacing="0"
+                                    width="100%"
+                                  >
+                                    <tr>
+                                      <ul
+                                        id="tourDatesContainer"
+                                        style="
+                                          font-size: 18px;
+                                          line-height: 2;
+                                          color: #0da04c;
+                                          font-weight: bold;
+                                          text-align: center;
+                                          list-style: none;
+                                        "
+                                      ></ul>
+                                    </tr>
+                                  </table>
+                                </td>
                               </tr>
                               <tr>
                                 <td height="20" style="height: 20px"></td>
@@ -304,6 +315,7 @@
                                   "
                                 >
                                   <a
+                                    id="button"
                                     href="www.stardewvalleyconcert.com"
                                     style="
                                       text-decoration: none;
@@ -311,7 +323,6 @@
                                       color: white;
                                     "
                                   >
-                                    Learn More
                                   </a>
                                 </td>
                                 <td width="20" style="width: 20px"></td>
@@ -332,6 +343,7 @@
                             style="text-align: center; font-size: 18px"
                           >
                             <a
+                              id="checkout"
                               href="www.stardewvalleyconcert.com"
                               style="
                                 color: #0da04c;
@@ -427,27 +439,22 @@
                               <tr>
                                 <td>
                                   <p
+                                    id="needAHand"
                                     style="
                                       color: #e496f4;
                                       font-size: 22px;
                                       line-height: 1;
                                       margin-bottom: 0;
                                     "
-                                  >
-                                    Need a hand?
-                                  </p>
+                                  ></p>
                                   <p
+                                    id="stardewContact"
                                     style="
                                       font-size: 16px;
                                       line-height: 1.2;
                                       color: #999999;
                                     "
-                                  >
-                                    Stardew Valley: Festival of Seasons is
-                                    produced by ConcernedApe and SOHO Live. For
-                                    booking, press, and general inquiries,
-                                    contact info@soho-live.com.
-                                  </p>
+                                  ></p>
                                 </td>
                               </tr>
                               <tr>
@@ -468,16 +475,16 @@
                         >
                           <td>
                             <p
+                              id="needAHand"
                               style="
                                 color: #e496f4;
                                 font-size: 20px;
                                 line-height: 0;
                                 text-align: center;
                               "
-                            >
-                              Need a hand?
-                            </p>
+                            ></p>
                             <p
+                              id="stardewContact"
                               style="
                                 font-size: 14px;
                                 line-height: 1.2;
@@ -485,11 +492,7 @@
                                 padding: 0 80px;
                                 color: #999999;
                               "
-                            >
-                              Stardew Valley: Festival of Seasons is produced by
-                              ConcernedApe and SOHO Live. For booking, press,
-                              and general inquiries, contact info@soho-live.com.
-                            </p>
+                            ></p>
                           </td>
                         </tr>
                       </tbody>
