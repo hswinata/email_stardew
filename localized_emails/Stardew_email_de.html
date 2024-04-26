@@ -258,18 +258,7 @@
                                     width="100%"
                                   >
                                     <tr>
-                                      <ul
-                                        class="tourDatesContainer"
-                                        style="
-                                          font-size: 18px;
-                                          line-height: 1;
-                                          color: #0da04c;
-                                          font-weight: bold;
-                                          text-align: center;
-                                          list-style: none;
-                                          padding: 0;
-                                        "
-                                      ></ul>
+                                      <ul class="tourDateContainer"></ul>
                                     </tr>
                                   </table>
                                 </td>
@@ -530,56 +519,124 @@
       }
     }
 
-    function formatDateGerman(dateString) {
-      const date = new Date(
-        dateString.slice(0, 4),
-        parseInt(dateString.slice(4, 6)) - 1,
-        dateString.slice(6)
+    function formatSingleDate(date) {
+      const formattedDate = new Date(
+        date.slice(0, 4),
+        parseInt(date.slice(4, 6)) - 1,
+        date.slice(6)
       );
-      const options = { day: "2-digit", month: "long", year: "numeric" };
-      return date.toLocaleDateString("de-DE", options);
+      return formattedDate;
+    }
+
+    function formatByCountry(date, country) {
+      let format = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+
+      switch (country.toLowerCase()) {
+        case "germany":
+          return date.toLocaleDateString("de-DE", format);
+        case "usa":
+        case "canada":
+        case "singapore":
+          return date.toLocaleDateString("en-US", format);
+        case "uk":
+          return date.toLocaleDateString("en-GB", format);
+        case "france":
+          return date.toLocaleDateString("fr-FR", format);
+        case "italy":
+          return date.toLocaleDateString("it-IT", format);
+        case "australia":
+        case "new zealand":
+          return date.toLocaleDateString("en-AU", format);
+        case "thailand":
+          return date.toLocaleDateString("th-TH", format);
+        // case "south korea":
+        //   const skFormat = formatSouthKoreanDate(date);
+        //   return skFormat;
+        // case "japan":
+        //   const format = {};
+        //   return date.toLocaleDateString("", format);
+        default:
+          throw new Error(`Unsupported country: ${country}`);
+      }
+    }
+
+    //South Korean date formatting
+    function formatSouthKoreanDate(date) {
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
+      const day = date.getDate().toString().padStart(2, "0");
+      return `${year}년 ${month}월 ${day}일`;
+    }
+
+    function formatDate(dates, country) {
+      //Check if there are more than 1 dates:
+      if (typeof dates === "string") {
+        const formattedDate = formatSingleDate(dates);
+        return formatByCountry(formattedDate, country);
+      } else if (Array.isArray(dates)) {
+        //Handle Array of dates
+        const formattedDates = [];
+
+        dates.forEach((date) => {
+          const formattedDate = formatByCountry(
+            formatSingleDate(date),
+            country
+          );
+          formattedDates.push(formattedDate);
+        });
+        return formattedDates;
+      }
     }
 
     async function fetchCities() {
       //Fetch Tour dates:
       const tourdateResponse = await fetch("../content/tour_dates.json");
       const tourdateData = await tourdateResponse.json();
-      const validCountries = ["Germany"];
+      const validCountries = ["UK"];
       const validCities = validCountries.flatMap((country) =>
         tourdateData
           .filter((value) => value["country"] === country)
           .flatMap((entry) =>
             entry.cities.map((city) => ({
               city: city.name,
-              date: formatDateGerman(city.date),
+              date: formatDate(city.date, "UK"),
             }))
           )
       );
 
-      const tourDatesContainer = document.querySelector(".tourDatesContainer");
+      const tourDateContainer = document.querySelector(".tourDateContainer");
 
       validCities.forEach((element) => {
-        const cityName = element["city"];
-        let dates = "";
+        const cityElement = document.createElement("h2");
+        cityElement.textContent = `🌟${element.city}🌟`;
+        cityElement.style = `font-size: 18px; line-height: 1.5; color: #0da04c; font-weight: bold; text-align: center; list-style: none; padding: 0`;
+        tourDateContainer.appendChild(cityElement);
 
+        //Create date container
+        const dateContainer = document.createElement("ul");
+        dateContainer.style = `font-size: 16px; color: black; font-weight: normal; text-align: center; list-style: none; padding: 0;`;
+
+        //Handle Array of dates
         if (Array.isArray(element.date)) {
           element.date.forEach((value, index) => {
-            if (index == 0) {
-              dates = value;
-            } else if (index === element.date.length - 1) {
-              dates += `, ${value}`;
-            } else {
-              dates += `, ${value}`;
-            }
+            const liElement = document.createElement("li");
+            liElement.textContent = value;
+            dateContainer.appendChild(liElement);
           });
         } else {
-          dates += `${element.date}`;
+          //If there is only a single date:
+          const liElement = document.createElement("li");
+          liElement.textContent = element.date;
+          dateContainer.appendChild(liElement);
         }
 
-        //Adding it to HTML:
-        const liElement = document.createElement("li");
-        liElement.textContent = `🌟 ${cityName}: ${dates} 🌟`;
-        tourDatesContainer.appendChild(liElement);
+        //Append dateContainer to cityElement:
+        cityElement.appendChild(dateContainer);
       });
     }
 
