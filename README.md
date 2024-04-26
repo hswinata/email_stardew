@@ -6,7 +6,7 @@ This responsive email was created as a hobby project to celebrate the Stardew Va
 [👆VEW EMAIL👆](https://hswinata.github.io/email_stardew/) 
 
 ## Features
-<br>![Dynamic Content based on country](./country_toggle.gif) <br>
+<br>![Dynamic Content based on country](./toggle_country.gif) <br>
 
 1. **Responsive design**: Ensures optimal user experience on various devices and orientations.
 2. **Localized Content**: Dynamically pulls content (text, dates) from JSON files based on the user's chosen country. Supported languages include:
