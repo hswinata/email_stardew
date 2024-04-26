@@ -10,6 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="”x-apple-disable-message-reformatting”" />
     <title>Welcome to the Festival of Seasons!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       @media only screen and (max-width: 480px) {
         .logo {
@@ -97,6 +103,31 @@
         <tr>
           <td></td>
           <td width="600" width="600px">
+            <!--Header-->
+            <table cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <td style="text-align: center;">
+                    <div style="height: 24px; width: auto; margin-top: 10px">
+                      <select
+                        id="countryChoice"
+                        style="
+                          margin-top: 10px;
+                          color: black;
+                          border: 2px solid #b24f00;
+                          background-color: #f4b763;
+                          border-radius: 5px;
+                          font-size: 16px;
+                          text-align: center;
+                          font-family: 'Pixelify Sans', sans-serif;
+                          cursor: pointer;
+                        "
+                      ></select>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <!--LOGO-->
             <table cellpadding="0" cellspacing="0" width="100%">
               <tbody>
@@ -258,7 +289,10 @@
                                     width="100%"
                                   >
                                     <tr>
-                                      <ul class="tourDateContainer"></ul>
+                                      <ul
+                                        class="tourDateContainer"
+                                        style="padding: 0"
+                                      ></ul>
                                     </tr>
                                   </table>
                                 </td>
@@ -499,10 +533,46 @@
     </table>
   </body>
   <script>
-    async function fetchData() {
+    async function fetchData(country) {
       try {
+        let contentFileName = "";
+        console.log(country);
+
+        //Determine content by country
+        switch (country.toLowerCase()) {
+          case "germany":
+            contentFileName = "German_content.json";
+            break;
+          case "usa":
+          case "australia":
+          case "new zealand":
+          case "australia":
+          case "canada":
+            contentFileName = "English_content.json";
+            break;
+          case "france":
+            contentFileName = "French_content.json";
+            break;
+          case "japan":
+            contentFileName = "Japanese_content.json";
+            break;
+          case "south korea":
+            contentFileName = "Korean_content.json";
+            break;
+          case "thailand":
+            contentFileName = "Thai_content.json";
+            break;
+          case "italy":
+            contentFileName = "Italian_content.json";
+            break;
+          default:
+            contentFileName = "English_content.json";
+        }
+
+        console.log(contentFileName);
+
         //Fetch localized content:
-        const contentResponse = await fetch("../content/German_content.json");
+        const contentResponse = await fetch(`../content/${contentFileName}`);
         const contentData = await contentResponse.json();
 
         // Map data keys to corresponding HTML element classes
@@ -554,18 +624,15 @@
           return date.toLocaleDateString("en-AU", format);
         case "thailand":
           return date.toLocaleDateString("th-TH", format);
-        // case "south korea":
-        //   const skFormat = formatSouthKoreanDate(date);
-        //   return skFormat;
-        // case "japan":
-        //   const format = {};
-        //   return date.toLocaleDateString("", format);
+        case "south korea":
+          return formatSouthKoreanDate(date);
+        case "japan":
+          return formatJapaneseDate(date);
         default:
           throw new Error(`Unsupported country: ${country}`);
       }
     }
 
-    //South Korean date formatting
     function formatSouthKoreanDate(date) {
       const year = date.getFullYear();
       const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -573,7 +640,34 @@
       return `${year}년 ${month}월 ${day}일`;
     }
 
-    function formatDate(dates, country) {
+    function formatJapaneseDate(date) {
+      const eraYear = getJapaneseEraYear(date);
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
+      const day = date.getDate().toString().padStart(2, "0");
+      return `${eraYear}年${month}月${day}日`;
+    }
+
+    function getJapaneseEraYear(date) {
+      const eraMap = new Map([
+        ["Heisei", 1989], // Example: Heisei era started in 1989
+        ["Reiwa", 2019], // Example: Reiwa era started in 2019
+      ]);
+      const currentYear = date.getFullYear();
+      let eraName = "Unknown";
+      let eraYear = currentYear;
+
+      for (const [era, startYear] of eraMap.entries()) {
+        if (currentYear >= startYear) {
+          eraName = era;
+          eraYear = currentYear - startYear + 1;
+          break;
+        }
+      }
+
+      return `${eraName}${eraYear}`;
+    }
+
+    function formatDate(dates, country = chooseCountry()) {
       //Check if there are more than 1 dates:
       if (typeof dates === "string") {
         const formattedDate = formatSingleDate(dates);
@@ -593,26 +687,38 @@
       }
     }
 
+    function chooseCountry() {
+      const countryChoice = document.querySelector("#countryChoice");
+      return countryChoice.value;
+    }
+
+    document.querySelector("#countryChoice").addEventListener("change", () => {
+      chooseCountry();
+      fetchData(chooseCountry());
+      fetchCities();
+    });
+
     async function fetchCities() {
       //Fetch Tour dates:
       const tourdateResponse = await fetch("../content/tour_dates.json");
       const tourdateData = await tourdateResponse.json();
-      const validCountries = ["UK"];
-      const validCities = validCountries.flatMap((country) =>
+      const validCountry = [chooseCountry()];
+      const validCities = validCountry.flatMap((country) =>
         tourdateData
           .filter((value) => value["country"] === country)
           .flatMap((entry) =>
             entry.cities.map((city) => ({
               city: city.name,
-              date: formatDate(city.date, "UK"),
+              date: formatDate(city.date, chooseCountry()),
             }))
           )
       );
 
       const tourDateContainer = document.querySelector(".tourDateContainer");
+      tourDateContainer.innerHTML = "";
 
       validCities.forEach((element) => {
-        const cityElement = document.createElement("h2");
+        const cityElement = document.createElement("h3");
         cityElement.textContent = `🌟${element.city}🌟`;
         cityElement.style = `font-size: 18px; line-height: 1.5; color: #0da04c; font-weight: bold; text-align: center; list-style: none; padding: 0`;
         tourDateContainer.appendChild(cityElement);
@@ -640,8 +746,38 @@
       });
     }
 
+    //Automatically populate the list of country options in the select element.
+    async function populateCountrySelection() {
+      const tourdateResponse = await fetch("../content/tour_dates.json");
+      const tourdateData = await tourdateResponse.json();
+
+      //Fetch list of countries
+      const listOfCountries = tourdateData
+        .reduce((acc, value) => {
+          acc.push(value.country);
+          return acc;
+        }, [])
+        .sort();
+
+      //Populate the country options
+      const countryChoice = document.querySelector("#countryChoice");
+
+      listOfCountries.forEach((country) => {
+        const optionElement = document.createElement("option");
+        optionElement.value = country;
+        optionElement.textContent = country;
+        countryChoice.appendChild(optionElement);
+
+        //Choose USA as default country
+        if (country === "USA") {
+          optionElement.setAttribute("selected", "");
+        }
+      });
+    }
+
     async function populateData() {
-      await fetchData();
+      populateCountrySelection();
+      await fetchData(chooseCountry());
       fetchCities();
     }
 

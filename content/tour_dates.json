@@ -22,7 +22,7 @@
   {
     "country": "Canada",
     "cities": [
-      { "name": "Toronto", "date": ["20240314", "20240314"] },
+      { "name": "Toronto", "date": ["20240314", "20240315"] },
       { "name": "Montreal", "date": ["20240317", "20240505"] },
       { "name": "Ottawa", "date": "20240323" },
       { "name": "Vancouver", "date": "20240327" },
